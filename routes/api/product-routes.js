@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
         { model: Category },
         { model: Tag, through: ProductTag, as: "tags" },
       ],
+      order: [['id', 'ASC']]
     });
     res.status(200).json(productData);
   } catch (err) {
@@ -41,12 +42,15 @@ router.get("/:id", async (req, res) => {
 // create new product
 router.post("/", (req, res) => {
   /* req.body should look like this...
+
     {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
+      "product_name": "Basketball",
+      "price": 200.00,
+      "stock": 3,
+      "category_id": 5,
+      "tagIds": [3, 4]
     }
+
   */
   Product.create(req.body)
     .then((product) => {
