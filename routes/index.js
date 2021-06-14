@@ -3,7 +3,7 @@ const apiRoutes = require('./api');
 
 router.use('/api', apiRoutes);
 
-router.use((req, res) => {
+router.use('/testing/test', (req, res) => {
   res.send("<h1>Please add '/category' or '/product' or '/tag' after api to check route data!</h1>")
 });
 
